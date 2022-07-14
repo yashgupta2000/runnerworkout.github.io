@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2161dd9857.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="stylee.css"> -->
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        li,
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 2px 0px 15px 0px rgb(220, 220, 220);
+        }
+        
+        .logo {
+            border-radius: 50%;
+            height: 4%;
+            width: 4%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+        
+        .section-one {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-ul {
+            display: flex;
+            text-decoration: none;
+            gap: 60px;
+            list-style: none;
+        }
+        
+        .right-ul {
+            list-style: none;
+            margin-right: 20px;
+        }
+        
+        .my-icon {
+            display: block;
+            align-items: center;
+            text-align: center;
+            font-size: 24px;
+        }
+        
+        .section2 {
+            font-family: sans-serif;
+            font-size: 25px;
+        }
+        
+        .section2 {
+            width: 90%;
+            /* border: 2px solid blueviolet; */
+            margin: auto;
+            padding: 10px;
+        }
+        
+        h1 {
+            margin-left: 10px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: rgb(63, 28, 95);
+        }
+        
+        .runner-workout {
+            display: flex;
+            border: 2px solid white;
+            overflow: hidden;
+            border-radius: 10px;
+            width: 100%;
+            height: 400px;
+        }
+        
+        .runner-workout-box {
+            flex-basis: 33.33%;
+            position: relative;
+            /* border: 2px solid black; */
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+        
+        .reduced-width {
+            flex-basis: 25%;
+        }
+        
+        .enhanced-width {
+            flex-basis: 50%;
+        }
+        
+        .workout-img {
+            height: 100%;
+            filter: brightness(80%);
+            opacity: 0.92;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .img-details {
+            position: absolute;
+            font-size: 18px;
+            color: white;
+            top: 18px;
+            left: 18px;
+            display: flex;
+        }
+        
+        .img-icon {
+            color: white;
+            position: absolute;
+            left: 500px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="section-one">
+            <img class="logo" src="logo1.jpg">
+            <nav>
+                <ul class="main-ul">
+                    <li>
+
+                        <a href="#">
+                            <i class="fa-solid fa-camera-retro my-icon"></i> LIVE
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-envelope-circle-check my-icon"></i>MEMBERSHIP
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-person-running my-icon"></i>PLAN
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa-solid fa-maximize my-icon"></i>MORE
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <ul class="right-ul">
+
+                <li><i class="fa-solid fa-user"></i> Login
+                </li>
+            </ul>
+            <!-- <a class="cta" href="#"><button>Login</button></a> -->
+        </div>
+
+    </header>
+
+    <section class="section2">
+        <div class="container">
+            <h1>Runner's Workout</h1>
+            <div class="runner-workout">
+                <div class="runner-workout-box" id="box-1">
+                    <img class="workout-img" src="workout1.jpg">
+                    <div class="img-details">
+                        <p>STRENGTH</p>
+                        <i class="fa-solid fa-circle-arrow-right img-icon"></i>
+                    </div>
+                </div>
+                <div class="runner-workout-box" id="box-2">
+                    <img class="workout-img" src="workout2.jpg">
+                    <div class="img-details">
+                        <p>MOBILITY</p>
+                        <i class="fa-solid fa-circle-arrow-right img-icon"></i>
+                    </div>
+                </div>
+                <div class="runner-workout-box" id="box-3">
+                    <img class="workout-img" src="workout3.jpg">
+                    <div class="img-details">
+                        <p>DRILLS </p>
+                        <i class="fa-solid fa-circle-arrow-right img-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var parentContainerWidth = document.querySelector(".runner-workout").offsetWidth;
+        console.log(parentContainerWidth);
+        document.querySelectorAll(".workout-img").forEach((el) => {
+            el.style.width = parentContainerWidth / 2 + "px";
+        })
+
+        document.querySelectorAll(".runner-workout-box").forEach((el) => {
+            el.addEventListener("mouseenter", function(e) {
+                document.querySelectorAll(".runner-workout-box").forEach((curEl) => {
+                    if (curEl.id != e.target.id) {
+                        curEl.classList.remove("enhanced-width")
+                        curEl.classList.add("reduced-width")
+                    } else {
+                        curEl.classList.remove("reduced-width")
+                        curEl.classList.add("enhanced-width")
+                    }
+                })
+            })
+        })
+
+
+
+    }, false);
+</script>
+
+</html>
